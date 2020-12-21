@@ -1,11 +1,25 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'react-native';
 import { Context as Blogcontext } from '../context/blogcontext';
 import { Feather } from '@expo/vector-icons';
 
 
 const Indexscreen = ({navigation}) => {
-    const {state, deleteBlogpost} = useContext(Blogcontext);
+    const {state, deleteBlogpost, getBlogpost } = useContext(Blogcontext);
+
+    useEffect( ()=> {
+        getBlogpost();
+
+        //re-rendering
+        const listener = navigation.addListener('didFocus', () => {
+            getBlogpost();
+        });
+
+        //preventing listener leaks
+        return () => {
+            listener.remove();
+        };
+    }, []);
 
     return (
         <View>
