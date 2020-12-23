@@ -1,6 +1,4 @@
-import React, {useState, UseContext, useContext} from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
-import { set } from 'react-native-reanimated';
+import React, {useContext} from 'react';
 import {Context as Blogcontext} from '../context/blogcontext';
 import BlogPostForm from '../Components/BlogPostForm';
 
@@ -16,9 +14,5 @@ const EditScreen = ({navigation}) => {
     }} />
 
 }
-
-const styles = StyleSheet.create({ 
-
-});
 
 export default EditScreen;
